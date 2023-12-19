@@ -1,0 +1,117 @@
+{% extends "index.html" %}
+
+{% load humanize %}
+{% block content %}
+
+<!--shopping cart area start -->
+<div class="shopping_cart_area mt-32">
+    <div class="container">
+        
+            <h3>Корзина</h3>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table_desc">
+                        <div class="cart_page table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product_remove">Удалить</th>
+                                        <th class="product_thumb">ID</th>
+                                        <th class="product_name">Название</th>
+                                        <th class="product_thumb">Срок поставки</th>
+                                        <th class="product-price">Цена</th>
+                                        <th class="product_quantity">Количество</th>
+                                        <th class="product_total">Сумма</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for cart_item in cart_items %}
+                                    
+                                    <tr class="cart-item-row">
+                                        <td>
+                                            <a href="{% url 'cart_remove_product' cart_item.product.id %}">
+                                                <i class="fa fa-trash-o"></i>
+                                            </a>
+                                        </td>
+                                        
+                                        <td class="product-price"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.product.id }}</a></td>
+                                        <td class="product-price"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.product.name }}</a></td>
+                                        <td class="product-price"><a href="{{ cart_item.product.get_absolute_url }}">{{ cart_item.product.srok }} дней</a></td>
+                                        <td class="product-price">{{ cart_item.product.price|intcomma }} руб.</td>
+                                        {% if cart_item.quantity < cart_item.product.stock %}
+                                            <td class="product_quantity">
+                                                <div class="quantity-input">
+                                                    <a href="{% url 'add_cart' cart_item.product.id %}">
+                                                        <img src="/static/icons/26_up.png">
+                                                    </a>
+                                                        <span style="color: #black; font-size: 20px;">{{cart_item.quantity}}</span>
+
+                                                    <a href="{% url 'cart_remove' cart_item.product.id %}">
+                                                        <img src="/static/icons/26_down.png">
+                                                    </a>
+                                                </div>
+                                            </td>
+                                                
+                                        <td class="cart-item-total product-price">{{ cart_item.sub_total|intcomma }} руб.</td>
+                                        
+                                        {% else %}
+                                            <td class="product_quantity">
+                                                <div class="quantity-input">
+                                                    <h4>больше  
+                                                    {{cart_item.quantity}}
+                                                    нет в наличии
+                                                    </h4>
+                                                    <a href="{% url 'cart_remove' cart_item.product.id %}">
+                                                        <img src="/static/icons/26_down.png">
+                                                    </a>
+                                                </div>
+                                            </td>
+
+                                        <td class="cart-item-total product-price">{{ cart_item.sub_total|intcomma }} руб.</td>   
+                                        {% endif %}
+                                    </tr>
+                                    
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <!--coupon code area start-->
+            <div class="coupon_area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <div class="btn btn-dark">
+                            <a href="{% url 'home_page' %}" style="color: #ffffff;">продолжить заказ</a>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-md-6">
+                        <div class="coupon_code right">
+                            <h3>Итого</h3>
+                            <div class="coupon_inner">
+                                <div class="cart_subtotal">
+                                    <p>Количество товара</p>
+                                    <p class="cart-total cart_amount">{{ item_count }} шт.</p>
+                                </div>
+                                <div class="cart_subtotal">
+                                    <p>Сумма заказа</p>
+                                    <p class="cart-total cart_amount">{{ total|intcomma }} руб.</p>
+                                </div>
+                                
+                                <div class="checkout_btn">
+                                    <a href="{% url "order_create" %}">Оформить заказ</a>
+                                </div>
+                                <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--coupon code area end-->
+    </div>
+</div>
+
+{% endblock %}

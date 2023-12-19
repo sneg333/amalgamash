@@ -1,0 +1,175 @@
+.zag_verh1 {
+    color: #dc3b3b;
+    font-size: 1.2em;
+  }
+
+.no-change-color {
+    color: black; /* Измените на желаемый цвет */
+}
+
+.btn.btn-dark a {
+    color: black; /* Цвет текста по умолчанию */
+    text-decoration: none; /* Убрать подчеркивание ссылки */
+  }
+
+  .btn.btn-dark a:hover {
+    color: black; /* Сохранить цвет текста при наведении */
+  }
+
+.slider_item {
+    position: relative;
+}
+
+/* Стили для текста на слайдере */
+.slider_text {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: #e06e6e;
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+}
+/* Стили для блока за текстом */
+.slider_text::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.40);/* прозрачность */
+    border-radius: 10px; /* Закругленные углы */
+    z-index: -1;
+}
+/* Стили для ссылки внутри .slider_text */
+.slider_text a {
+    color: inherit; /* Унаследуется исходный цвет текста */
+    pointer-events: auto; /* Активируем события указателя для ссылки */
+}
+
+/* Стили для ссылки при наведении */
+.slider_text a:hover {
+    color: inherit; /* Унаследуется исходный цвет текста */
+}
+
+.osvetlenie {
+    background-color: rgba(212, 212, 212, 0.75);/* прозрачность */
+    padding: 2%;
+    border-radius: 10px; /* Закругленные углы */
+
+}
+
+.zatemnenie {
+    background-color: rgba(28, 28, 28, 0.4);/* прозрачность */
+    padding: 5%;
+    border-radius: 10px; /* Закругленные углы */
+
+}
+
+.elow {
+    background-color: #e06e6e; 
+    color: black; /* Чёрный цвет текста */
+    transition: color 0.3s;   
+}
+.elow {
+    color: black;   
+}
+
+.yes_stock {
+    background-color: rgb(137, 216, 137);
+    color: black; /* Чёрный цвет текста */
+    transition: color 0.3s; /* Плавное изменение цвета при наведении курсора */
+}
+.yes_stock:hover {
+    color: black; /* Чёрный цвет текста при наведении курсора */
+}
+
+.rt2 {
+    color: #050505; 
+    font-size: 20px;
+    font-weight: bold; 
+}
+
+
+/* Зелёная овальная кнопка */
+.green-button {
+    background-color: green; /* Цвет фона - зелёный */
+    color: black; /* Цвет текста - чёрный */
+    border: none; /* Убираем границу */
+    border-radius: 50px; /* Делаем кнопку овальной формы */
+    padding: 10px 20px; /* Задаем отступы внутри кнопки */
+}
+
+/* Красная овальная кнопка */
+.red-button {
+    background-color: red; /* Цвет фона - красный */
+    color: black; /* Цвет текста - чёрный */
+    border: none; /* Убираем границу */
+    border-radius: 50px; /* Делаем кнопку овальной формы */
+    padding: 10px 20px; /* Задаем отступы внутри кнопки */
+}
+
+
+/************кнопка *********/
+
+.product_total9 {
+    background: #e06e6e;
+    font-size: 12px;
+    font-weight: 700;
+    height: 38px;
+    line-height: 18px;
+    padding: 10px 20px;
+    color: #333;
+    text-transform: uppercase;
+    border-radius: 3px;
+  }
+  
+  .product_total9:hover {
+    background: #333;
+    color: #ffffff;
+  }
+
+/**----------------**/
+
+.knop {
+    text-align: right;
+    background: #060606;
+    font-size: 15px;
+    padding: 3px 14px;
+    line-height: 30px;
+    font-weight: 500;
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: 0;
+  }
+
+  .knop a:hover {
+    background: #c05f5f;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 3px 14px;
+    line-height: 30px;
+    font-weight: 500;
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: 0;
+  }
+
+  .knop1 {
+    background: #c05f5f;
+    color: #ffffff;
+    font-size: 15px;
+    padding: 3px 14px;
+    line-height: 30px;
+    font-weight: 500;
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: 0;
+  }
+
+  /*красная звёздочка для обязательного поля*/
+  .required-field:after {
+    content: " *";
+    color: red;
+}

@@ -1,0 +1,108 @@
+
+
+    <!--call to action start-->
+    <section class="call_to_action">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="call_action_inner">
+                        <div class="call_text">
+                            <h3>Наш товар - Ваше <span>Решение</span></h3>
+                            <p>при покупке от 100 000 руб, скидка 15%</p>
+                        </div>
+                        
+                        <div class="link_follow">
+                            <ul>
+                                {% comment %} 
+                                {% for network in network %}
+                                <li><a href="{{network.url_network}}">
+                                    <img src="{{network.network_image.url}}" alt="">
+                                    </a>
+                                </li>
+                                {% endfor %} {% endcomment %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--call to action end-->
+
+<footer class="footer_widgets">
+    <div class="container">
+        <div class="footer_top">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="widgets_container contact_us">
+
+                        {% for contact in contact %}
+                        <div class="footer_logo">
+                            <a href="#"><img src="assets/img/logo/logo.png" alt=""></a>
+                        </div>
+                        <div class="footer_contact">
+                            <p> Адрес: {{ contact.body_contact|safe }} {{ contact.adress_one_contact }}</p>
+                            <p><span>Телефон</span> {{ contact.tel }}</p>
+                            <p><span>Наш e-mail</span>e-mail: <a href="tel:1-800-345-6789">{{ contact.web }}</a></p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Каталог</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                {% for brends in brends %}
+                                    <li><a href="{{ brends.get_absolute_url }}">
+                                        {{brends.title}}</a>
+                                    </li>
+                                {% endfor %} 
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 col-sm-6">
+                    <div class="widgets_container widget_menu">
+                        <h3>Меню</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="{% url 'home_page' %}">Главная</a></li>
+                                <li><a href="{% url 'onas' %}">О нас</a></li>
+                                <li><a href="{% url 'contact' %}">Контакты</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="widgets_container">
+                        <h3>Поиск товара</h3>
+                        <p>Найдите неоходимый вам товар в нашем каталоге.</p>
+                        <div class="subscribe_form">
+
+                            <form action="{% url 'search' %}" method="GET" class="mc-form footer-newsletter">
+                                <input id="mc-email" type="text" name="q" autocomplete="off" placeholder="Поиск товара..." />
+                                <button id="mc-submit">Искать</button>
+                            </form>
+                            <!-- mailchimp-alerts Start -->
+                            <div class="mailchimp-alerts text-centre">
+                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                            </div><!-- mailchimp-alerts end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="copyright_area">
+                        <p>Developer by  <a href="https://t.me/Flymeor">IKarabash</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

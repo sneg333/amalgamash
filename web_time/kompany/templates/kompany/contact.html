@@ -1,0 +1,77 @@
+{% extends "index.html" %}
+
+{% block content %}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="{% url 'home_page' %}">главная</a></li>
+                        <li>Контакты</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+    <!--contact map start-->
+    <div class="contact_map mt-30">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="map-area">
+                        <div id="googleMap">
+                            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ac61f8950b2f39f57826fd1668f3da721dd386088b7a95d7618998f033a7292fd&amp;source=constructor" width="1280" height="416" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--contact map end-->
+
+    <!--contact area start-->
+    
+    <div class="contact_area">
+        <div class="container">
+            <div class="row">
+                {% for contact in contact %}
+                <div class="col-lg-6 col-md-12">
+                    <div class="contact_message content">
+                        <h3>Связаться с нами</h3>
+                        <p>{{ contact.body_contact }}</p>
+                        <ul>
+                            <li><i class="fa fa-fax"></i> адрес : {{ contact.adress_one_contact }}</li>
+                            <li><i class="fa fa-phone"></i>{{ contact.tel }} </li>
+                            <li><i class="fa fa-envelope-o"></i> {{ contact.web }}</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %} 
+
+                {% block formobrzvonok %}
+                <div class="col-lg-6 col-md-12">
+                    <div class="contact_message form">
+                        <h3>Отправить запрос на обратный звонок</h3>
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            {{ form.as_p}}
+                            <button type="submit"> отправить</button>
+                            <p class="form-messege"></p>
+                        </form>
+
+                    </div>
+                </div>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+    
+    <!--contact area end-->
+
+{% endblock content %}

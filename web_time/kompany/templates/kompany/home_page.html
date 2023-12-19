@@ -1,0 +1,74 @@
+
+{% extends "index.html" %}
+
+{% block content %}
+
+    <!--our services area-->
+    <div class="our_services">
+        <div class="container">
+            
+            <div class="row">
+                {% for brend in brends %}
+                <div class="col-lg-3 col-md-6">
+                    <div class="services_item">
+                        {% if brend.image %}
+                        <div class="services_icone">
+                            <a class="primary_img" href="{{ brend.get_absolute_url }}">
+                            <img src="{{brend.image.url}}" alt="">
+                            </a>
+                        </div>
+                        {% else %}
+                        {% endif %}
+                        <div class="services_desc">
+                            <a class="primary_img" href="{{ brend.get_absolute_url }}">
+                            <h4>{{brend.title}}</h4>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!--our services area end-->
+
+
+    <!--featured categories area start-->
+    <section class="featured_categories featured_c_four  mb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section_title">
+                        <h2><span> <strong>Популярные</strong>товары</span></h2>
+                    </div>
+                    <div class="product_carousel featured_four  product_column5 owl-carousel">
+
+                        {% for  population_product in population_products %}
+                        <div class="single_featured">
+                            <div class="featured_thumb">
+                                <a href="{{ population_product.get_absolute_url }}">
+                                    {% if population_product.image %}
+                                    <img src="{{population_product.image.url}}" alt="">
+                                    {% else %}
+                                    <img src="/static/img/no600.jpg" alt="">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            <div class="featured_content">
+                                <h3 class="product_name">
+                                    <a href="{{ population_product.get_absolute_url }}">
+                                        {{population_product.name}}
+                                    </a>
+                                </h3>
+                                
+                                <a class="view_more" href="{{ population_product.get_absolute_url }}">подробнее</a>
+                            </div>
+                        </div>
+                        {% endfor population_product %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--featured categories area end-->
+{% endblock content %}

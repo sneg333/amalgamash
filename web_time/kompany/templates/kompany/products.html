@@ -1,0 +1,125 @@
+{% extends "index.html" %} {% load humanize %} {% block content %}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="breadcrumb_content">
+          <ul>
+            <li><a href="{% url 'home_page' %}">главная</a></li>
+
+            <li>{{products.title}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--breadcrumbs area end-->
+
+<div class="shop_area shop_fullwidth">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <!--shop wrapper start-->
+        <!--shop toolbar start-->
+        <div class="shop_title">
+          <h1>{{ products.title }}</h1>
+        </div>
+
+        <!--shop toolbar end-->
+        <div class="row shop_wrapper">
+          <!--wishlist area start -->
+          <div class="wishlist_area mt-30">
+            <div class="container">
+              
+                <div class="row">
+                  <div class="col-12">
+                    <div class="table_desc wishlist">
+                      <div class="cart_page table-responsive">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th class="product_remove">Артикул</th>
+                              <th class="product_thumb">Наименование</th>
+                              <th class="product_name">срок поставки <br> дней</th>
+                              <th class="product-price">цена руб.</th>
+                              <th class="product_quantity"> наличие </th>
+                              <th class="product_quantity"> наличие </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {% for prod in products.product.all %} 
+                            {% if prod.available %}
+                            <tr>
+                              <td class="product_remove">
+                                <a href="{{ prod.get_absolute_url }}">
+                                  {{ prod.id }}
+                                </a>
+                              </td>
+                              
+                              <td class="product_remove">
+                                <a href="{{ prod.get_absolute_url }}">
+                                  {{ prod.name }}
+                                </a>
+                              </td>
+                              <td class="product_remove">
+                                <a href="{{ prod.get_absolute_url }}">
+                                  {{ prod.srok }}
+                                </a>
+                              </td>
+                              <td class="product-price">
+                                {% if prod.price %} 
+                                {{ prod.price|intcomma }} 
+                                {% endif %}
+                              </td>
+
+                              {% if not prod.stock %}
+                              <td class="no_stocke product_quantity product-price">
+                                <a href="{{ prod.get_absolute_url }}">
+                                  <img src="/static/img/red_circle.png" alt=""> товара нет
+                                </a>
+                              </td>
+                              <td class="no_stocke product_quantity product-price">
+
+                              </td>
+                              
+                              {% else %}
+                              <td class="product_quantity product-price">
+                                <a href="{% url 'product_detail' id=prod.id slug=prod.slug %}">
+                                  <img src="/static/img/green_circle.png" alt=""> в наличии 
+                                </a>
+                              </td>
+
+                              <td class="no_stocke product_quantity product-price">
+                                <a class="btn btn-success" href="{% url 'add_cart' prod.id %}" style="color: black;">
+                                    добавить в корзину
+                                </a> 
+                              </td>
+                              
+                              {% endif %}
+
+                            </tr>
+                            {% else %}
+                            {% endif %}
+                            {% endfor %}
+                          </tbody> 
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          </div>
+          <!--wishlist area end -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--shop  area end-->
+
+
+
+{% endblock %}

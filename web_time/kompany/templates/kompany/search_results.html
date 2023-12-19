@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!--product details start-->
+<div class="product_details mt-20">
+    <div class="container">
+        <div class="row">
+
+            <h2>Результаты поиска</h2>
+            {% if query %}
+                <p>Результаты для запроса: "{{ query }}"</p>
+
+                {% if products %}
+                    {% for product in products %}
+
+                    {% if product.image %}
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product-details-tab">
+                            <div id="img-1" class="zoomWrapper single-zoom">
+                                <a href="{{ prod.get_absolute_url }}">
+                                    <img src="{{ product.image.url }}"  alt="big-1">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    {% endif %}
+
+                    <div class="col-lg-6 col-md-6">
+                        <div class="product_d_right">
+                            <a href="{{ prod.get_absolute_url }}">
+                                <h1>{{ product.title }}</h1>
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Ничего не найдено.</p>
+                {% endif %}
+                {% else %}
+                    <p>Пожалуйста, введите запрос.</p>
+                {% endif %}
+        </div>
+    </div>
+</div>
+<!--product details end-->
+{% endblock %}

@@ -1,0 +1,99 @@
+{% extends "index.html" %}
+
+{% block content %}
+{% for onas in onas %}
+<!--slider area start-->
+<section class="slider_section slider_two mb-50">
+        {% if onas.image_uslugi %}
+        <img src="{{ onas.image_uslugi.url }}">
+        {% else %}
+        {% endif %}
+    </div>
+</section>
+
+<!--Privacy Policy area start-->
+<div class="privacy_policy_main_area">
+    <div class="container">
+        <div class="row">
+            <h2>{{onas.title_onas1}}</h2>
+            <div class="col-12">
+                <div class="privacy_content section_1">
+
+                    <p> </a>{{onas.body_onas}}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--slider area end-->
+
+<!--services img area-->
+<div class="about_gallery_section">
+    
+    <div class="container">
+        <div class="row">
+            <h2>{{onas.title_onas2}}</h2>
+            {% for sertif in  onas.image_sertifacat.all%}
+            <div class="col-lg-4 col-md-6">
+                <div class="single_gallery_section">
+                    <div class="gallery_thumb">
+                        <img src="/static/img/service/services2.jpg" alt="">
+                    </div>
+                    <div class="about_gallery_content">
+                        <h3>{{sertif.title_sertificat}}</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!--services img end-->
+
+<!--faq area start-->
+<div class="faq_content_area mt-32">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="faq_content_wrapper">
+                    <h4>Часто задаваемые вопросы</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="accordion_area">
+    <div class="container">
+        <div class="row">
+        <div class="col-12"> 
+            
+            <div id="accordionExample" class="card__accordion accordion">
+                {% for question in onas.question.all %}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse{{ forloop.counter }}">
+                            {{ question.title_question }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading{{ forloop.counter }}" data-bs-parent="#accordionExample">
+                        <div class="card-body">
+                            <p>{{ question.body_question }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+    </div>
+</div>
+
+<!--Accordion area end-->
+
+
+{% endfor %}
+
+{% endblock %}

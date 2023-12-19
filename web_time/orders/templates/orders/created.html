@@ -1,0 +1,29 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<!--Checkout page section-->
+<div class="Checkout_section mt-32">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h3>Подтверждение заказа</h3>
+                <div class="user-actions">
+                    <h3> 
+                    </h3> 
+                </div> 
+                <h4>Ваш заказ был успешно отправлен!</h4><br>
+                <h4>Номер заказа: {{ last_order_id }}</h4><br>
+            
+                <h4>Спасибо за ваш заказ!</h4><br>
+                <h4>Вы можете дополнительно уточнить информацию о заказе связавшись
+                    с нами по телефону или в социальных сетях
+                </h4><br>
+
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "index.html" %}
+
+{% block content %}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="{% url 'home_page' %}">главная</a></li>
+                        <li>{{pod_brands.title}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+<div class="shop_area shop_fullwidth">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <!--shop wrapper start-->
+                <!--shop toolbar start-->
+                <div class="shop_title">
+                    <h1>{{ kategory_detail.title_kategory }}</h1>
+                </div>
+                
+                <!--shop toolbar end-->
+                <div class="row shop_wrapper">
+                    
+                    {% for pod_br in pod_brands.pod_brend.all %}
+                    <div class="col-lg-3 col-md-4 col-12 ">                       
+                        <div class="single_product">
+                            <div class="product_name grid_name">
+                                <h3>
+                                    <a href="{{ pod_br.get_absolute_url }}">
+                                        {{ pod_br.title }}
+                                    </a>
+                                </h3>
+                            </div>
+                            <div class="product_thumb">
+                                {% if pod_br.image %}
+                                <a class="primary_img" href="{{ pod_br.get_absolute_url }}">
+                                    <img src="{{ pod_br.image.url }}" alt="">
+                                </a>
+                                {% else %}
+                                {% endif %}
+                            </div>
+
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--shop  area end-->
+
+{% endblock %}

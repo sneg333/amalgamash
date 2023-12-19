@@ -1,0 +1,139 @@
+{% extends "index.html" %}
+{% load humanize %}
+{% block content %}
+<!--breadcrumbs area start-->
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="{% url 'home_page' %}">главная</a></li>
+                        {% for pod_brend in pod_brends %}
+                            <li>{{ pod_brend.title }}</li>
+                        {% endfor %}
+                         <li>
+                            {{ product.title }}
+                         </li>
+
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--breadcrumbs area end-->
+
+
+<!--product details start-->
+<div class="product_details mt-20">
+    <div class="container">
+        <div class="row">
+
+            {% if product.image %}
+            <div class="col-lg-6 col-md-6">
+                <div class="product-details-tab">
+                    <div id="img-1" class="zoomWrapper single-zoom">
+                        <img src="{{ product.image.url }}"  alt="big-1">
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            {% endif %} 
+
+            <div class="col-lg-6 col-md-6">
+                <div class="product_d_right">
+                    <form action="#">
+
+                        <h1>{{product.name}}</h1>
+                        <div class="product_nav">  
+                        </div>
+                        
+                        <div class="price_box">
+                            <span class="current_price"> 
+                                {% if product.price %}
+                                    {{ product.price|intcomma }} руб.
+                                {% else %}
+                                {% endif %}
+                            </span>
+                            
+
+                        </div>
+                        <div class="product_desc">
+                            <p> доставка за {{product.srok}} </p>
+                        </div>
+                        <div class="product_desc">
+                            <p>  ID {{product.id}} <br>
+
+                        </div>
+                        
+                        
+                        {% if product.stock %}
+                        <div class=" product_d_action">
+                            <ul>
+                                <li>
+                                    <img src="/static/img/green_circle.png" alt=""> в наличии
+                                </li>
+                            </ul>
+                        </div>
+                        {% else %}
+                        <div class=" product_d_action">
+                            <ul>
+                                <li>
+                                    <img src="/static/img/red_circle.png" alt=""> нет на складе
+                                </li>
+                            </ul>
+                        </div>
+                        {% endif %}
+
+                    </form>
+
+                        {% if product.stock %}
+                        <a  class="btn btn-success" href="{% url 'add_cart' product.id %}" style="color: black;">
+                            добавить в корзину
+                        </a>
+                        {% else %}
+                        
+                        {% endif %}
+
+                    <br><br>
+                    <div class="btn btn-dark">
+                        <a href="{% url 'cart_detail' %}" style="color: #ffffff;">Перейти в корзину</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--product details end-->
+
+    <!--contact area start-->
+    <div class="contact_area">
+        <div class="container">
+                    <div class="col-12">
+                        <div class="product_d_inner">
+                            <div class="product_info_button">
+                                <ul class="nav" role="tablist" id="nav-tab">
+                                    <li>
+                                        <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">
+                                            Характеристики товара </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                    <div class="product_info_content">
+                                        
+                                        <p>{{ product_detail.teh_description|safe }}</p>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+
+{% endblock %}
+

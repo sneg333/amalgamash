@@ -1,0 +1,13 @@
+version: '2.0'
+services:
+  web_time:
+    build:
+      context: .
+    ports:
+    - "8000:8000"
+
+    volumes:
+    - .:/web_time
+
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
