@@ -40,3 +40,10 @@ class ProductAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name', )}
 
 admin.site.register(Product, ProductAdmin)
+
+class ProductRelationAdmin(admin.ModelAdmin):
+    list_display = ['id']
+
+
+admin.site.register(ProductRelation, ProductRelationAdmin)
+
