@@ -14,7 +14,7 @@ class Product(models.Model):
     srok = models.CharField(max_length=150, blank=True, verbose_name='Cрок поставки')
     description = RichTextUploadingField(blank=True, verbose_name="описание")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
-    stock = models.PositiveIntegerField(verbose_name="На складе")
+    stock = models.PositiveIntegerField(verbose_name="На складе", default=1,)
     available = models.BooleanField(default=True, verbose_name="Доступен")
     pop_prodaj = models.BooleanField(default=False, verbose_name="популярные товары")
 
