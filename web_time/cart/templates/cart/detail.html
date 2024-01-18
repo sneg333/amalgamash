@@ -101,10 +101,14 @@
                                     <p class="cart-total cart_amount">{{ total|intcomma }} руб.</p>
                                 </div>
                                 
+                                {% if item_count > 0 %}
+                                
                                 <div class="checkout_btn">
                                     <a href="{% url "order_create" %}">Оформить заказ</a>
                                 </div>
                                 <input type="hidden" id="csrf-token" value="{{ csrf_token }}">
+                                {% else %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
