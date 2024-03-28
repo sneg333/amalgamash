@@ -3,4 +3,5 @@ djangorestframework==3.14.0
 Pillow
 psycopg2-binary
 django-ckeditor==6.0.0
+django-crispy-breadcrumbs
 

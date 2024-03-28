@@ -68,7 +68,22 @@ class Brend(models.Model):
     def get_absolute_url(self):
         return reverse('pod_brand',
                         args=[self.id])    
+    
 
+'''Модель связи'''
+class ProductRelation(models.Model):
+    brend = models.ForeignKey('Brend', on_delete=models.CASCADE)
+    pod_brend = models.ForeignKey('Pod_Brend', on_delete=models.CASCADE)
+    product = models.ForeignKey('Product', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Связь продукта, бренда и подбренда'
+        verbose_name_plural = 'Связи продуктов, брендов и подбрендов'
+
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[str(self.product.id)])
+
+    
 '''Модель дом'''
 class Home(models.Model):
     title_home = models.CharField(max_length=200, verbose_name='домашняя')

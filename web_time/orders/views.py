@@ -7,6 +7,7 @@ from kompany.models import Brend, Contact, Network
 from .forms import OrderCreateForm
 from cart.models import Cart, CartItem
 from cart.views import _cart_id
+from kompany.utils import get_constanta
 
 def _cart_id(request):
     cart = request.session.session_key
@@ -14,12 +15,7 @@ def _cart_id(request):
         cart = request.session.create()
     return cart
 
-def order_create(request):
-    # Получаем все бренды (это может пригодиться в контексте представления)
-    brends = Brend.objects.all()
-    contact = Contact.objects.all()
-    upNetwork = Network.objects.all()
-    
+def order_create(request):    
     # Получаем корзину текущего пользователя
     cart, created = Cart.objects.get_or_create(cart_id=_cart_id(request))
     cart_items = CartItem.objects.filter(cart=cart, active=True)  # Получаем все активные товары в корзине
@@ -68,12 +64,10 @@ def order_create(request):
 
             context = {
                 'form': form,
-                'brends': brends,
-                'contact': contact,
-                'upNetwork': upNetwork,
                 'order_items': order_items,
                 'total_price': total_price,
-                'total_quantity': total_quantity
+                'total_quantity': total_quantity,
+                **get_constanta(),
             }
             return redirect('created')
     else:
@@ -83,27 +77,20 @@ def order_create(request):
         total_quantity = cart_items.aggregate(total_quantity=Sum('quantity'))['total_quantity'] or 0
         context = {
             'form': form,
-            'brends': brends,
-            'contact': contact,
-            'upNetwork': upNetwork,
             'cart_items': cart_items,  # Передаем данные о товарах в корзине
             'total_price': total_price,
-            'total_quantity': total_quantity
+            'total_quantity': total_quantity,
+            **get_constanta(),
         }
 
     return render(request, 'orders/create.html', context)
 
 def created(request):
-    brends = Brend.objects.all()
-    contact = Contact.objects.all()
-    upNetwork = Network.objects.all()
     last_order = Order.objects.latest('created') 
 
     context = {
-        'brends': brends,
-        'contact': contact,
-        'upNetwork': upNetwork,
-        'last_order_id': last_order.id
+        'last_order_id': last_order.id,
+        **get_constanta(),
     }
     return render(request, 'orders/created.html', context)
 

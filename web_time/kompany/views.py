@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.urls import reverse, NoReverseMatch
+from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Contact, FormObratZvonot, Onas, Home, Product, Brend, Pod_Brend, Product
+from .models import Contact, FormObratZvonot, Onas, Home, Product, Brend, Pod_Brend, Product, ProductRelation
 from .forms import FormObratZvonok
 from .utils import get_constanta
 
@@ -68,11 +69,17 @@ def pod_brand(request, id):
     return render(request, 'kompany/pod_brand.html', context)
 
 # список продуктов - таблица
+
 def products(request, id):
-    products = get_object_or_404(Pod_Brend, id=id)
+    pod_brend = get_object_or_404(Pod_Brend, id=id)
+    product_relations = ProductRelation.objects.filter(pod_brend=pod_brend)
+
+    products = [relation.product for relation in product_relations]
 
     context = {
+        'pod_brend': pod_brend,
         'products': products,
+        # Остальные переменные контекста
         **get_constanta(),
     }
     return render(request, 'kompany/products.html', context)

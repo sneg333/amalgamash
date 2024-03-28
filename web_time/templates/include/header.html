@@ -159,7 +159,6 @@
                                         <li><a href="{% url 'home_page' %}">Главная</a>
                                             
                                         </li>
-                                        
                                         <li><a href="{% url 'onas' %}">О Нас</a></li>
                                         <li><a href="{% url 'contact' %}"> контакты </a></li>
                                        
@@ -175,6 +174,8 @@
         </div>
 
     </header>
+
+    
     <!--header area end-->
     <!--Offcanvas menu area start-->
 <div class="off_canvars_overlay"></div>
@@ -192,15 +193,16 @@
                         <a href="#"><i class="ion-android-close"></i></a>
                     </div>
 
-                    {% comment %} <div class="Offcanvas_follow">
-                        <label>Follow Us:</label>
+                    <div class="Offcanvas_follow">
+                        
                         <ul class="follow_link">
-                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
-                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
-                            <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                            {% for network in upNetwork %}
+                            <li><a href="#"><img src="{{ network.network_image.url }}"></a></li>
+                            {% endfor %}
                         </ul>
-                    </div> {% endcomment %}
+                    </div> 
+
+
                     <div class="search-container">
                         <form action="{% url 'search' %}" method="GET">
                             <div class="search_box">
