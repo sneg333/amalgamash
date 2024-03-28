@@ -3,5 +3,9 @@ djangorestframework==3.14.0
 Pillow
 psycopg2-binary
 django-ckeditor==6.0.0
+<<<<<<< HEAD
 django-crispy-breadcrumbs
 
+=======
+django-view-breadcrumbs==2.5.1
+>>>>>>> b70a482fd07d07f0092dd00682511052ee1e5d00

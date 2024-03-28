@@ -46,3 +46,7 @@ class ProductRelationAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ProductRelation, ProductRelationAdmin)
+<<<<<<< HEAD
+=======
+
+>>>>>>> b70a482fd07d07f0092dd00682511052ee1e5d00

@@ -14,7 +14,7 @@ class Product(models.Model):
     srok = models.CharField(max_length=150, blank=True, verbose_name='Cрок поставки')
     description = RichTextUploadingField(blank=True, verbose_name="описание")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
-    stock = models.PositiveIntegerField(verbose_name="На складе")
+    stock = models.PositiveIntegerField(verbose_name="На складе", default=1,)
     available = models.BooleanField(default=True, verbose_name="Доступен")
     pop_prodaj = models.BooleanField(default=False, verbose_name="популярные товары")
 
@@ -69,7 +69,10 @@ class Brend(models.Model):
         return reverse('pod_brand',
                         args=[self.id])    
     
+<<<<<<< HEAD
 
+=======
+>>>>>>> b70a482fd07d07f0092dd00682511052ee1e5d00
 '''Модель связи'''
 class ProductRelation(models.Model):
     brend = models.ForeignKey('Brend', on_delete=models.CASCADE)
@@ -79,6 +82,12 @@ class ProductRelation(models.Model):
     class Meta:
         verbose_name = 'Связь продукта, бренда и подбренда'
         verbose_name_plural = 'Связи продуктов, брендов и подбрендов'
+<<<<<<< HEAD
+=======
+
+    def get_absolute_url(self):
+        return reverse('product_detail', args=[str(self.product.id)])
+>>>>>>> b70a482fd07d07f0092dd00682511052ee1e5d00
 
     def get_absolute_url(self):
         return reverse('product_detail', args=[str(self.product.id)])
